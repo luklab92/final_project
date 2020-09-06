@@ -1,6 +1,6 @@
 package com.sda.final_project_wro27;
 
-import com.sda.final_project_wro27.model.User;
+import com.sda.final_project_wro27.model.UserEntity;
 import com.sda.final_project_wro27.dto.RegistrationDto;
 import com.sda.final_project_wro27.repository.UserRepository;
 import com.sda.final_project_wro27.repository.UserRoleRepository;
@@ -31,7 +31,7 @@ public class UserService {
         if (userWithEmailExists(registrationDto.getLogin())) {
             throw new RuntimeException("Użytkownik o takim emailu " + registrationDto.getLogin() + "istnieje");
         }
-        User userToSave = User.apply(registrationDto,password);
+        UserEntity userToSave = UserEntity.apply(registrationDto,password);
         userToSave.addRole(userRoleRepository.findByRoleName(UserRole.Roles.USER.name()));
         userToSave.addStatus(userStatusRepository.findByStatusByName(UserStatus.Status.NOT_ACCEPTED.name()));
         userRepository.save(userToSave);
@@ -42,7 +42,7 @@ public class UserService {
         return userRepository.existsByLogin(login);
     }
 
-    public User findUserByLogin(String login) {
+    public UserEntity findUserByLogin(String login) {
         return userRepository.findUserByLogin(login);
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Getter
-public class User extends BaseEntity {
+public class UserEntity extends BaseEntity {
 
     private String firstName;
     private String lastName;
@@ -29,8 +29,8 @@ public class User extends BaseEntity {
     @ManyToOne
     private UserStatus status;
 
-    public static User apply(RegistrationDto registrationDto, String passwordHash){
-        User user = new User();
+    public static UserEntity apply(RegistrationDto registrationDto, String passwordHash){
+        UserEntity user = new UserEntity();
         Address address = Address.apply(registrationDto);
         user.firstName = registrationDto.getFirstName();
         user.lastName = registrationDto.getLastName();
