@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Registered users</title>
+</head>
+<body>
+<h1>Zarejestrowani użytkownicy</h1>
+    <h2 th:if="${response =='NoData'}">No users found!</h2>
+    <div th:if="${response =='full'}">
+        <table class="table table-dark" >
+            <thead>
+            <tr>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Data urodzenia</th>
+                <th>Pesel</th>
+                <th>Login</th>
+                <th>Haslo</th>
+                <th>Numer telefonu</th>
+                <th>Rola</th>
+                <th>Status</th>
+                <th>Usuń</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.birthDate}"></td>
+                <td th:text="${user.pesel}"></td>
+                <td th:text="${user.login}"></td>
+                <td th:text="${user.password}"></td>
+                <td th:text="${user.phoneNumber}"></td>
+                <td th:text="${user.roles}"></td>
+                <td th:text="${user.status}"></td>
+                <td>
+                    <a role="button" class="btn btn-danger" th:href="@{/deleteuser/{login}(login=${user.login})}">Delete</a>
+                </td>
+            </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+<form action="#" th:action="@{/goback}" method="post">
+    <button type="button" class="btn btn-outline-info">Go back to main page</button>
+</form>
+</body>
+</html>

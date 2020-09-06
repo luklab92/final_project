@@ -1,5 +1,7 @@
 package com.sda.final_project_wro27;
 
+import com.sda.final_project_wro27.dto.RegistrationDto;
+
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

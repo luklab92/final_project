@@ -9,7 +9,8 @@
     <input type="text" th:field="*{firstName}" placeholder="Imie"><br>
     <input type="text" th:field="*{lastName}" placeholder="Nazwisko"><br>
     <input type="text" th:field="*{birthDate}" placeholder="Data urodzenia"><br>
-    <input type="text" th:field="*{pesel}" placeholder="Pesel"><br>
+    <input type="text" th:field="*{pesel}" placeholder="Pesel">
+    <td th:if="${#fields.hasErrors('pesel')}" th:errors="*{pesel}">Invalid Pesel</td><br>
     <input type="text" th:field="*{login}" placeholder="Login"><br>
     <input type="text" th:field="*{password}"  placeholder="Hasło"><br>
     <input type="text" th:field="*{phoneNumber}" placeholder="Numer telefonu"><br>
@@ -23,8 +24,10 @@
     <input type="text" th:field="*{zipCode}" placeholder="Kod pocztowy"><br>
     <label for="prefer">Wybieram email</label>
     <input id="prefer" type="checkbox" th:field="*{preferEmails}"><br>
+
     <button type="submit">Zarejestruj się</button>
-    <br>
+        <br>
+
     <button type="reset">RESET</button>
 </form>
 </body>

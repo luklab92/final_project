@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+<form action="/login-process" method="post">
+    <p>Login <input type="email" placeholder="Podaj login" name="username" ></p>
+    <p>Password <input type="password" placeholder="Podaj haslo" name = "password" ></p>
+    <input type="reset" value="reset"/>
+    <button type="submit">LOGIN</button>
+</form>
+</body>
+</html>

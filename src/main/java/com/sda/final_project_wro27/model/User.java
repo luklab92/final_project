@@ -1,15 +1,18 @@
-package com.sda.final_project_wro27;
+package com.sda.final_project_wro27.model;
 
-import javax.annotation.processing.Generated;
+import com.sda.final_project_wro27.*;
+import com.sda.final_project_wro27.dto.RegistrationDto;
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class User extends BaseEntity{
+@Getter
+public class User extends BaseEntity {
 
     private String firstName;
     private String lastName;
@@ -23,6 +26,8 @@ public class User extends BaseEntity{
     private boolean preferEmails;
     @ManyToMany
     private List<UserRole> roles;
+    @ManyToOne
+    private UserStatus status;
 
     public static User apply(RegistrationDto registrationDto, String passwordHash){
         User user = new User();
@@ -39,7 +44,7 @@ public class User extends BaseEntity{
 
     public void addRole(UserRole userRole) {
 
-        if (isaBoolean(userRole)) {
+        if (hasAnyRole(userRole)) {
             return;
         }
         if (roles == null) {
@@ -47,9 +52,28 @@ public class User extends BaseEntity{
         }
         roles.add(userRole);
     }
+    public void addStatus(UserStatus byStatusByName) {
+        status = byStatusByName;
+    }
 
-    private boolean isaBoolean(UserRole userRole) {
+
+    private boolean hasAnyRole(UserRole userRole) {
         return roles != null && roles.stream().anyMatch(r -> userRole.getRole().equals(r.getRole()));
     }
+
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", roles=" + roles +
+                ", status=" + status +
+                '}';
+    }
+
+
+
 
 }

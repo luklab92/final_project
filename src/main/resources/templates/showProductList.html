@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Products</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-4" th:each="product : ${products}">
+
+            <div class="row" style="border: black solid 1px">
+                <div class="col-md-4" th:text="${product.productTitle}">
+
+                </div>
+                <img class="col-md-4"
+                     th:src="${product.imageUrl}">
+                <div class="col-md-4" th:text="${product.price}">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <th:block th:each="i: ${#numbers.sequence(0, products.getTotalPages() - 1)}">
+        <a class="btn btn-success" th:href="@{/product/all(page=${i})}" th:text="${i+1}"></a>
+    </th:block>
+</div>
+
+
+    <form action="#" th:action="@{/goback}" method="post">
+        <button type="button" class="btn btn-outline-info">Go back to main page</button>
+    </form>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.sda.final_project_wro27;
+package com.sda.final_project_wro27.dto;
 
 import javax.persistence.*;
 import java.time.LocalDate;

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Product add form</title>
+</head>
+<body>
+<form action="/product/add" method="post" th:object="${productToSave}">
+    <div class="form-group">
+        <label for="pTitle">
+    <input class="form-control" id="pTitle" type="text" th:field="*{productTitle}" placeholder="Tytuł"><br>
+        </label>
+    </div>
+    <input type="text" th:field="*{productDescription}" placeholder="Opis"><br>
+    <input type="number" th:field="*{price}" placeholder="Cena"><br>
+
+    <select class="form-control" type="text" th:field="*{productCategoryId}">
+        <option th:each="pc : ${productCategories}" th:text="${pc.productCategoryTitle}" th:value="${pc.productCategoryId}"></option>
+    </select><br>
+    <input type="text" th:field="*{imageUrl}" placeholder="ImageUrl"><br>
+    <input type="text" th:field="*{authorFirstName}" placeholder="Imie"><br>
+    <input type="text" th:field="*{authorLastName}" placeholder="Nazwisko"><br>
+    <select type="text" th:field="*{productType}"><br>
+        <option th:each="c : ${productTypes}" th:text="${c.name}" th:value="${c.name()}"></option>
+    </select><br>
+    <button class="btn-info" type="submit">Dodaj produkt</button>
+    <br>
+
+    <button class="btn-danger" type="reset">RESET</button>
+</form>
+</body>
+</html>
